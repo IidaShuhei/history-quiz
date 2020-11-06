@@ -68,15 +68,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+SECURE_SSL_REDIRECT = True
+django_heroku.settings(locals())
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'history_quiz',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgres://xagaosskgaodph:a655d4e3ef4934020c91d7959ced2865ae40de2608c95a52ed29d4430ad27a20@ec2-23-20-70-32.compute-1.amazonaws.com:5432/d5qdchfmof4788'
+    )
 }
 
 import dj_database_url
