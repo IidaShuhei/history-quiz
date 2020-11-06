@@ -1,9 +1,16 @@
 from pathlib import Path
 import os
 
-SECRET_KEY = ')$6w(p$nz^xmpv703s$6j2$$-@_zl7exd8cx6errjb_sq6anss'
-
-DEBUG = True
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEBUG = False
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+if not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY']
+    import django_heroku #追加
+    django_heroku.settings(locals()) #追加
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
