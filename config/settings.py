@@ -1,16 +1,10 @@
 from pathlib import Path
 import os
+import dj_database_url
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SECRET_KEY = ')$6w(p$nz^xmpv703s$6j2$$-@_zl7exd8cx6errjb_sq6anss'
+
 DEBUG = False
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    import django_heroku #追加
-    django_heroku.settings(locals()) #追加
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -68,18 +62,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-SECURE_SSL_REDIRECT = True
-django_heroku.settings(locals())
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://xagaosskgaodph:a655d4e3ef4934020c91d7959ced2865ae40de2608c95a52ed29d4430ad27a20@ec2-23-20-70-32.compute-1.amazonaws.com:5432/d5qdchfmof4788'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'history_quiz',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT':'5432',
+    }
 }
 
-import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
