@@ -5,7 +5,13 @@ import dj_database_url
 SECRET_KEY = ')$6w(p$nz^xmpv703s$6j2$$-@_zl7exd8cx6errjb_sq6anss'
 
 DEBUG = False
-
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -118,11 +124,3 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
