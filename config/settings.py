@@ -67,10 +67,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'history_quiz',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'NAME': 'd5qdchfmof4788',
+        'USER': 'xagaosskgaodph',
+        'PASSWORD': 'a655d4e3ef4934020c91d7959ced2865ae40de2608c95a52ed29d4430ad27a20',
+        'HOST': 'ec2-23-20-70-32.compute-1.amazonaws.com',
         'PORT':'5432',
     }
 }
