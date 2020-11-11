@@ -6,5 +6,6 @@ router = routers.DefaultRouter()
 router.register('quiz', QuizzesViewSet)
 router.register('era', ErasViewSet)
 router.register('level', LevelsViewSet)
+router.register('category', CategoriesViewSet)
 
 urlpatterns = router.urls

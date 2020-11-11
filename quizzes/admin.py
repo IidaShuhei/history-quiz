@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Quiz)
 admin.site.register(Era)
 admin.site.register(Level)
+admin.site.register(Category)

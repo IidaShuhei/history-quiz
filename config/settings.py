@@ -2,17 +2,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
-SECRET_KEY = ')$6w(p$nz^xmpv703s$6j2$$-@_zl7exd8cx6errjb_sq6anss'
-
 DEBUG = False
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
-ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,10 +56,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -81,11 +67,15 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+if not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY'] 
+    import django_heroku
+    django_heroku.settings(locals())
+ALLOWED_HOSTS = ['*']
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,10 +91,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'ja'
 
