@@ -75,6 +75,16 @@ DATABASES = {
         'PORT':'5432',
     }
 }
+# try:
+#     from .local_settings import *
+# except ImportError:
+#     pass
+# if not DEBUG:
+#     SECRET_KEY = os.environ['SECRET_KEY'] 
+#     import django_heroku
+#     django_heroku.settings(locals())
+# ALLOWED_HOSTS = ['*']
+
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 

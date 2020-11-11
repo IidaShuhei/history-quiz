@@ -13,8 +13,7 @@ class ErasViewSet(ModelViewSet):
   serializer_class = EraSerializer
 
 class LevelsViewSet(ModelViewSet):
-  sql = "select * from levels"
-  queryset = Level.objects.raw(sql)
+  queryset = Level.objects.all().order_by('id')
   serializer_class = LevelSerializer
 
 class CategoriesViewSet(ModelViewSet):
