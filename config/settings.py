@@ -67,15 +67,15 @@ DATABASES = {
     }
 }
 
-# try:
-#     from .local_settings import *
-# except ImportError:
-#     pass
-# if not DEBUG:
-#     SECRET_KEY = os.environ['SECRET_KEY'] 
-#     import django_heroku
-#     django_heroku.settings(locals())
-# ALLOWED_HOSTS = ['*']
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+if not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY'] 
+    import django_heroku
+    django_heroku.settings(locals())
+ALLOWED_HOSTS = ['*']
 
 AUTH_PASSWORD_VALIDATORS = [
     {
