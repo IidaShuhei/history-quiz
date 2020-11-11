@@ -3,6 +3,8 @@ import os
 import dj_database_url
 
 DEBUG = False
+
+# デプロイ時に使用
 try:
     from .local_settings import *
 except ImportError:
@@ -75,6 +77,8 @@ DATABASES = {
         'PORT':'5432',
     }
 }
+
+# ローカルに使用
 # try:
 #     from .local_settings import *
 # except ImportError:
